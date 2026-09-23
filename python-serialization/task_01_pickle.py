@@ -26,7 +26,7 @@ class CustomObject:
     def serialize(self, filename):
         """Serializes in a binary file."""
         with open(filename, "wb") as f:
-            pickle.dump(self, f, protocol=pickle.HIGHEST_PROTOCOL)
+            pickle.dump(self, f)
 
     @classmethod
     def deserialize(cls, filename):
