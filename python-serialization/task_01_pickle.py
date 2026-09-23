@@ -33,4 +33,7 @@ class CustomObject:
         """Deserialize a binary file."""
         with open(filename, "rb") as f:
             obj = pickle.load(f)
+        if not isinstance(obj, cls):
+            return None
+
         return obj
