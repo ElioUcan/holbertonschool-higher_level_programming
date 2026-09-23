@@ -6,11 +6,13 @@ Serialize class
 """
 
 import pickle
-from abc import classmethod
 
 
 class CustomObject:
+    """Class of a custom object"""
+
     def __init__(self, name, age, is_student):
+
         self.name = name
         self.age = age
         self.isStudent = is_student
@@ -22,14 +24,13 @@ class CustomObject:
         print(f"Is Student: {self.isStudent}")
 
     def serialize(self, filename):
+        """Serializes in a binary file."""
         with open(filename, "wb") as f:
-            pickle.dump(f, protocol=pickle.HIGHEST_PROTOCOL)
-        with open(filename, "rb") as f:
-            load = pickle.load(f)
-        return load
+            pickle.dump(self, f, protocol=pickle.HIGHEST_PROTOCOL)
 
     @classmethod
     def deserialize(cls, filename):
-        serialize = pickle.dumps(filename)
-        restored = pickle.loads(serialize)
-        return restored
+        """Deserialize a binary file."""
+        with open(filename, "rb") as f:
+            obj = pickle.load(f)
+        return obj
